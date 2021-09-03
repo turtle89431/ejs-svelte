@@ -1,7 +1,7 @@
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-//var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('dotenv').config()
 var indexRouter = require('./routes/index');
@@ -17,12 +17,11 @@ const config = {
   issuerBaseURL: `${process.env.issuerBaseURL}`
 };
 var app = express();
+var http = require('http').Server(app)
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(auth(config));
-// app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
@@ -44,4 +43,4 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+http.listen(process.env.port)
