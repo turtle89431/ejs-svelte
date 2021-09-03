@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "rollup -c && node ./bin/www"
+    "start": "rollup -c && node app.js"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
