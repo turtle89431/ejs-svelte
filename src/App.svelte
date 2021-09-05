@@ -1,11 +1,13 @@
 <script>
     export let name;
     import { io } from "socket.io-client";
+    import AuthBtns from "./components/AuthBtns.svelte";
     let socket = io("//");
 </script>
 
 <main>
     <h3>{name}</h3>
+    <AuthBtns {name} />
 </main>
 
 <style>

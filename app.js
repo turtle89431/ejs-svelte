@@ -8,7 +8,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var app = express();
 var http = require('http').Server(app)
-//var io = require("socket.io")(http)
 var io = require("./serverlibs/sio")(http)
 const { auth } = require('express-openid-connect');
 
@@ -24,9 +23,9 @@ const config = {
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.use(auth(config));
-app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(auth(config));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
