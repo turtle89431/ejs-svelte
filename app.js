@@ -6,6 +6,10 @@ var logger = require('morgan');
 require('dotenv').config()
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var app = express();
+var http = require('http').Server(app)
+//var io = require("socket.io")(http)
+var io = require("./serverlibs/sio")(http)
 const { auth } = require('express-openid-connect');
 
 const config = {
@@ -16,8 +20,7 @@ const config = {
   clientID: `${process.env.clientID}`,
   issuerBaseURL: `${process.env.issuerBaseURL}`
 };
-var app = express();
-var http = require('http').Server(app)
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

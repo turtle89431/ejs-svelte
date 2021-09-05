@@ -1,5 +1,7 @@
 <script>
     export let name;
+    import { io } from "socket.io-client";
+    let socket = io("//");
 </script>
 
 <main>
